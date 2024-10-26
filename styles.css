@@ -1,0 +1,388 @@
+body {
+    font-family: 'Playfair Display', serif; 
+    background-color: #a8e08a; /* Fallback color if image fails */    
+}
+
+#home-section {
+    background-color: #91ce98; /* Change to your desired color */
+    margin: auto;
+    padding: 20px;
+    color: black;
+}
+
+#content {
+    padding-top: 100px; /* Adjust according to the navbar's height */
+}
+
+.intro-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    gap: 20px; /* Space between image and text */
+    padding: 20px;
+    max-width: 1000px; /* Optional: to limit the width */
+    margin: 0 auto; /* Center the container */
+}
+
+.home-image {
+    width: 100%; /* Adjust based on preference */
+    max-width: 500px; /* Set a max-width for better control */
+    height: auto;
+    border-radius: 8px; /* Optional: add rounded corners */
+}
+
+.intro-text {
+    font-size: 2em;
+    color: #333;
+    max-width: 50%;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .intro-container {
+        flex-direction: column; /* Stack vertically on smaller screens */
+        text-align: center;
+    }
+    .home-image, .intro-text {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2d4059;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #2d4059;
+    font-size: 1.8em;
+    margin-top: 30px;
+}
+
+.benefits-text {
+    color: #053764;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li {
+    font-size: 1.1em;
+    padding: 8px;
+    color: #086670;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 0;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.testimonial {
+    margin-top: 30px;
+    font-style: italic;
+    color: #6c757d;
+    padding: 15px;
+    border-left: 3px solid #2d4059;
+    background-color: #f4f4f9;
+    border-radius: 5px;
+}
+
+/* Basic styling for the navigation bar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #12b2a5;
+    border-radius: 5px;
+    position: fixed; 
+    width: 97%
+}
+
+/* Logo on the left */
+.logo {
+    flex: 0 1 auto;
+}
+
+/* Navigation links in the center */
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0 auto; /* Centers the nav links */
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links a:hover {
+    background-color: #16a329;
+    border-radius: 5px;
+}
+
+/* Login button on the right */
+.login-button {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.r-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.r-btn:hover {
+    background-color: #0056b3;
+}
+
+#loginPopup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 156, 42, 0.576); /* Darker background for a stronger overlay effect */
+    z-index: 1000; /* Ensure it appears on top of other elements */
+}
+
+#loginForm {
+    background-color: #1eca35;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+#loginForm label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #555;
+}
+
+#loginForm input[type="text"]:focus,
+#loginForm input[type="password"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#reserve-section {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+
+#reserve-section h2 {
+    text-align: center;
+    color: #333;
+}
+
+#reservation-form label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0 5px;
+}
+
+#reservation-form input, 
+#reservation-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#reservation-form input[type="text"],
+#reservation-form input[type="email"],
+#reservation-form input[type="tel"],
+#reservation-form input[type="date"],
+#reservation-form input[type="number"] {
+    background-color: #fefefe;
+}
+
+#reservation-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#reservation-form button:hover {
+    background-color: #45a049;
+}
+
+#reservation-status {
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.map-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between locations */
+}
+
+.location {
+    text-align: center; /* Center align text and map */
+}
+
+.map {
+    height: 300px; /* Set height for each map */
+    width: 100%; /* Full width for the map */
+    border: 1px solid #ccc; /* Optional border around maps */
+    border-radius: 8px; /* Rounded corners */
+}
+
+#cars-section {
+    text-align: center; /* Center align text */
+    padding: 20px; /* Space around the section */
+}
+
+.car-container {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the boxes */
+    gap: 20px; /* Space between car boxes */
+    flex-wrap: wrap; /* Allow boxes to wrap in smaller screens */
+}
+
+.car-box {
+    background-color: #f9f9f9ab; /* Light background color */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 15px; /* Space inside the box */
+    width: 300px; /* Set width for each car box */
+    transition: transform 0.3s; /* Smooth transition on hover */
+}
+
+.car-box:hover {
+    transform: scale(1.05); /* Slightly enlarge box on hover */
+}
+
+.car-image {
+    width: 100%; /* Full width image */
+    border-radius: 10px; /* Match the box corners */
+    height: auto; /* Keep aspect ratio */
+}
+
+#pricing-section {
+    text-align: center; /* Center align text */
+    padding: 20px; /* Space around the section */
+}
+
+.pricing-container {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the boxes */
+    gap: 20px; /* Space between pricing boxes */
+    flex-wrap: wrap; /* Allow boxes to wrap in smaller screens */
+}
+
+.pricing-box {
+    background-color: #f9f9f9ab; /* Light background color */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 15px; /* Space inside the box */
+    width: 300px; /* Set width for each pricing box */
+    transition: transform 0.3s; /* Smooth transition on hover */
+}
+
+.pricing-box:hover {
+    transform: scale(1.05); /* Slightly enlarge box on hover */
+}
+
+#contact-section {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#contact-section h2 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#contact-form label {
+    margin: 10px 0 5px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+#contact-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contact-form button:hover {
+    background-color: #45a049;
+}

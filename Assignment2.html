@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>AZoom Car Rental Pte Ltd</title>
+    <link rel="icon" href="AZoom.png" type="image/png">  
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar with Logo -->
+    <header>
+        <nav class="navbar">
+            <!-- Car Logo -->
+            <div class="logo">
+                <a href="#"><img src="AZoom.png" alt="Car Logo" style="width: 100px; height: 100px;"/></a>
+            </div>
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#" id="home">Home</a></li>
+                <li><a href="#" id="reserve">Reserve</a></li>
+                <li><a href="#" id="pricing">Pricing</a></li>
+                <li><a href="#" id="location">Location</a></li>
+                <li><a href="#" id="cars">Cars</a></li>
+            </ul>
+            <!-- Login Button -->
+            <div class="login-button">
+                <a href="#" class="btn">Login</a>
+            </div>
+        </nav>    
+    </header>
+
+    <main id="content">
+        <section id="home-section">
+            <h1>Welcome to AZoom Car Rental</h1>
+            <div class="intro-container">
+                <img src="Home.png" alt="Electric car rental" class="home-image">
+                <p class="intro-text">Sustainable mode of transport. We prioritize your convenience.</p>
+            </div>
+            <a href="#" class="r-btn" onclick="scrollToReserve()">Reserve Now</a>
+    
+            <h2>Why Choose Electric?</h2>
+            <p class="benefits-text">Discover the benefits of renting electric cars, from saving on fuel to reducing your carbon footprint:</p>
+            <ul class="benefits-list">
+                <li>Cost-effective and efficient</li>
+                <li>Zero emissions driving</li>
+                <li>Quiet and comfortable rides</li>
+            </ul>
+            
+            <h3>Customer Testimonials</h3>
+            <article class="testimonial">
+                <blockquote>
+                    "Renting from AZoom was an amazing experience! I loved driving an electric car and supporting a sustainable future."
+                </blockquote>
+                <p>- Sarah J.</p>
+            </article>
+
+            <h3>Contact Us</h3>
+            <p>Submit your enquiries via this form below or contact us at AZrentalcars@gmail.sg/+65 66553477</p>
+            <form id="contact-form">
+                <label for="contact-name">Name:</label>
+                <input type="text" id="contact-name" required>
+        
+                <label for="contact-email">Email:</label>
+                <input type="email" id="contact-email" required>
+        
+                <label for="contact-message">Message:</label>
+                <textarea id="contact-message" rows="4" required></textarea>
+        
+                <button type="submit">Submit Enquiry</button>
+            </form>
+        </section>
+            
+        <section id="reserve-section" class="hidden">
+            <h2>Reservation</h2>
+            <form id="reservation-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+        
+                <label for="address">Address:</label>
+                <input type="text" id="address" required>
+        
+                <label for="passport-id">Passport ID/NRIC:</label>
+                <input type="text" id="passport-id" required>
+        
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+        
+                <label for="mobile">Mobile No:</label>
+                <input type="tel" id="mobile" required>
+        
+                <label for="car-type">Car Type:</label>
+                <select id="car-type" required>
+                    <option value="hyundaikonaEV">Hyundai Kona EV</option>
+                    <option value="bydatto3">BYD Atto 3</option>
+                    <option value="byde6">BYD e6</option>
+                </select>
+        
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date" required>
+        
+                <label for="duration">Duration:</label>
+                <input type="number" id="duration" min="1" placeholder="Enter duration" required>
+                <select id="duration-type" required>
+                    <option value="Days">Days</option>
+                    <option value="Weeks">Weeks</option>
+                    <option value="Months">Months</option>
+                </select>
+        
+                <label for="return-date">Return Date:</label>
+                <input type="date" id="return-date" required>
+        
+                <label for="credit-card">Credit Card Number:</label>
+                <input type="text" id="credit-card" required>
+        
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" required>
+        
+                <button type="submit">Reserve</button>
+            </form>
+        </section>
+        
+        <section id="pricing-section" class="hidden">
+            <h2>Pricing</h2>
+            <p>Check out our rental rates below.</p>
+            <div class="pricing-container">
+                <div class="pricing-box">
+                    <h3>Standard Electric</h3>
+                    <p><strong>Rate (per day):</strong> $150</p>
+                    <p><strong>Rate (per week):</strong> $888</p>
+                    <p><strong>Rate (per month):</strong> $3250</p>
+                </div>
+                <div class="pricing-box">
+                    <h3>Premium Electric</h3>
+                    <p><strong>Rate (per day):</strong> $180</p>
+                    <p><strong>Rate (per week):</strong> $1050</p>
+                    <p><strong>Rate (per month):</strong> $4000</p>
+                </div>
+            </div>
+        </section>        
+        
+        <section id="location-section" class="hidden">
+            <h2>Locations for pick up and return</h2>
+            <div class="map-container">
+                <div class="location">
+                    <h3>Branch 1: Orchard Road</h3>
+                    <div class="map" id="map1"></div>
+                    <p>This branch is located at Orchard Road, a major shopping street in Singapore, offering easy access for all your rental needs.</p>
+                </div>
+                <div class="location">
+                    <h3>Branch 2: Changi Airport</h3>
+                    <div class="map" id="map2"></div>
+                    <p>Conveniently located at Changi Airport, making it easy for travelers to pick up their cars.</p>
+                </div>
+                <div class="location">
+                    <h3>Designated Return Car Park: East Coast Park</h3>
+                    <div class="map" id="map3"></div>
+                    <p>This is the designated car park for returning rental cars, located at East Coast Park, a popular recreational area.</p>
+                </div>
+            </div>
+        </section>        
+        
+        <section id="cars-section" class="hidden">
+            <h2>Electric Cars Available for Rent</h2>
+            <div class="car-container">
+                <div class="car-box">
+                    <img src="hyundai_kona_ev.jpeg" alt="Hyundai Kona EV" class="car-image">
+                    <h3>Standard Electric</h3>
+                    <p><strong>Model:</strong> Hyundai Kona EV</p>
+                    <p><strong>Type:</strong> SUV 5 seater</p>
+                </div>
+                <div class="car-box">
+                    <img src="byd_e6.jpeg" alt="BYD e6" class="car-image">
+                    <h3>Standard Electric</h3>
+                    <p><strong>Model:</strong> BYD e6</p>
+                    <p><strong>Type:</strong> MPV 5 seater</p>
+                </div>
+                <div class="car-box">
+                    <img src="byd_atto_3.jpeg" alt="BYD Atto 3" class="car-image">
+                    <h3>Premium Electric</h3>
+                    <p><strong>Model:</strong> BYD Atto 3</p>
+                    <p><strong>Type:</strong> SUV 5 seater</p>
+                </div>
+            </div>
+        </section>        
+        
+        <!-- Login Popup Structure -->
+        <div id="loginPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center;">
+            <div style="background-color: white; padding: 20px; border-radius: 5px; width: 400px; text-align: center;">
+                <h2>Login</h2>
+                
+                <!-- Login Type Buttons -->
+                <button onclick="selectLoginType('member')">Login as Member</button>
+                <button onclick="selectLoginType('staff')">Login as Staff</button>
+
+                <!-- Login Form -->
+                <form id="loginForm" onsubmit="handleLogin(event)" style="display: none; margin-top: 20px;">
+                    <h3 id="loginTypeTitle"></h3>
+                    
+                    <label for="username">Email:</label>
+                    <input type="email" id="username" name="username" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <button type="submit">Login</button>
+                </form>
+                
+                <!-- Close Button for the Popup -->
+                <button onclick="closePopup()" style="margin-top: 10px;">Close</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 A Zoom Car Rental. All rights reserved</p>    
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

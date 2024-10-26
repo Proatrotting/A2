@@ -1,0 +1,149 @@
+<!-- payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="AZoom.png" type="image/png"> 
+    <title>Reservation and Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #a8e08a;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #confirmation-container, #payment-container {
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .detail {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .payment-methods {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Reservation Confirmation Section -->
+    <div id="confirmation-container">
+        <h2>Reservation Successful</h2>
+        <div id="reservation-details"></div>
+        <p id="reservation-status"></p>
+        <p class="detail">Thank you for your reservation! A confirmation email will be sent shortly.</p>
+        <button onclick="showPayment()">Proceed to Payment</button>
+    </div>
+
+    <!-- Payment Section -->
+    <div id="payment-container" class="hidden">
+        <h2>Payment Details</h2>
+        <div id="payment-details"></div>
+        <div class="payment-methods">
+            <h3>Payment Methods:</h3>
+            <ul>
+                <li>PayNow UEN: 10069883N</li>
+                <li>PayPal</li>
+                <li>Mastercard</li>
+                <li>Visa</li>
+                <li>GooglePay</li>
+            </ul>
+        </div>
+        <button id="download-invoice">Download Invoice</button>
+    </div>
+
+    <script>
+        // Retrieve reservation details from localStorage
+        const reservationDetails = JSON.parse(localStorage.getItem("reservationDetails"));
+        const additionalCosts = Math.floor(Math.random() * 200); // Random additional costs
+
+        // Display reservation details in confirmation section
+        const detailsContainer = document.getElementById("reservation-details");
+        if (reservationDetails) {
+            detailsContainer.innerHTML = `
+                <p class="detail"><strong>Name:</strong> ${reservationDetails.name}</p>
+                <p class="detail"><strong>Address:</strong> ${reservationDetails.address}</p>
+                <p class="detail"><strong>Passport ID/NRIC:</strong> ${reservationDetails.passportId}</p>
+                <p class="detail"><strong>Email:</strong> ${reservationDetails.email}</p>
+                <p class="detail"><strong>Mobile No:</strong> ${reservationDetails.mobile}</p>
+                <p class="detail"><strong>Car Type:</strong> ${reservationDetails.carType}</p>
+                <p class="detail"><strong>Start Date:</strong> ${reservationDetails.startDate}</p>
+                <p class="detail"><strong>Duration:</strong> ${reservationDetails.duration} ${reservationDetails.durationType}</p>
+                <p class="detail"><strong>Return Date:</strong> ${reservationDetails.returnDate}</p>
+                <p class="detail"><strong>Credit Card:</strong> ${reservationDetails.creditCard}</p>
+            `;
+        } else {
+            detailsContainer.innerHTML = "<p class='detail'>No reservation details available.</p>";
+        }
+
+        // Generate a reference number and update reservation status
+        const reservationStatus = document.getElementById("reservation-status");
+        const referenceNumber = 'REF' + Math.floor(Math.random() * 1000000);
+        reservationStatus.textContent = `Reservation successful! Your reference number is ${referenceNumber}.`;
+
+        // Show payment details
+        function showPayment() {
+            // Calculate total payment
+            const rentCost = 750; // Assuming this value, replace with actual calculation
+            const totalPayment = rentCost + additionalCosts;
+
+            // Display payment details
+            const paymentDetailsContainer = document.getElementById("payment-details");
+            paymentDetailsContainer.innerHTML = `
+                <p class="detail"><strong>Total Rent Cost:</strong> $${rentCost}</p>
+                <p class="detail"><strong>Additional Costs:</strong> $${additionalCosts}</p>
+                <p class="detail"><strong>Total Payment Amount:</strong> $${totalPayment}</p>
+            `;
+
+            // Show the payment container and hide the confirmation container
+            document.getElementById("confirmation-container").classList.add("hidden");
+            document.getElementById("payment-container").classList.remove("hidden");
+        }
+
+        // Download invoice functionality (dummy example)
+        document.getElementById("download-invoice").addEventListener("click", function () {
+            alert("Invoice downloaded!");
+            // Here you would implement the actual download functionality
+        });
+
+        // Clear localStorage (optional)
+        localStorage.removeItem("reservationDetails");
+    </script>
+</body>
+</html>
