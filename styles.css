@@ -112,8 +112,9 @@ h2 {
     padding: 10px;
     background-color: #12b2a5;
     border-radius: 5px;
-    position: fixed; 
-    width: 97%
+    position: fixed;
+    width: 97%;
+    z-index: 1000; /* Ensures the navbar is on top */
 }
 
 /* Logo on the left */
@@ -121,11 +122,19 @@ h2 {
     flex: 0 1 auto;
 }
 
+/* Hide the menu icon initially */
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
 /* Navigation links in the center */
 .nav-links {
     display: flex;
     list-style: none;
-    margin: 0 auto; /* Centers the nav links */
+    margin: 0 auto;
     padding: 0;
 }
 
@@ -142,6 +151,37 @@ h2 {
 .nav-links a:hover {
     background-color: #16a329;
     border-radius: 5px;
+}
+
+/* Responsive styling for mobile */
+@media (max-width: 768px) {
+    /* Show the hamburger icon on small screens */
+    .menu-icon {
+        display: block;
+    }
+
+    /* Hide the nav links by default */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Position below the navbar */
+        right: 10px;
+        background-color: #12b2a5;
+        padding: 10px;
+        border-radius: 5px;
+        width: calc(100% - 20px);
+    }
+
+    /* Display nav links when menu is active */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
 }
 
 /* Login button on the right */
