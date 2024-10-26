@@ -181,3 +181,8 @@ function initMaps() {
 
 // Call the initMaps function when the window loads
 window.onload = initMaps;
+
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+}
